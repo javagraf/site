@@ -1,0 +1,91 @@
+
+<div class="jp_alert_wrapper jp_error" style="display: none;">
+    <div class="jp_alert_inner">
+        <div class="message">
+
+        </div>
+    </div>
+</div>
+
+<div class="jp_main_wrapper" ng-controller='authCtrl'>
+    <div class="jp_auth_box_wrapper">
+        <div class="container">
+            <div class="jp_auth_box">
+                <div class="jp_auth_form">
+                     <form name="loginForm" ng-submit='loginUser(loginForm)' ng-validate="validationOptions">
+                    <h3 class="jp_auth_title">Login</h3>
+                    <div class="jp_radio_list" ng-init="loginForm.user.option_login='seeker'">
+                        <div class="jp_radio">
+                            <input type="radio" name="login_option" id="seeker" ng-model="loginForm.user.option_login" value='seeker' />
+                            <label for="seeker">Seeker</label>
+                        </div>
+                        <div class="jp_radio">
+                            <input type="radio"  name="login_option" id="recruiter" ng-model="loginForm.user.option_login" value='recruiter' />
+                            <label for="recruiter">Recruiter</label>
+                        </div>
+                    </div>
+                    <div class="jp_input_wrapper">
+                        <label>Your Email</label>
+                        <input type="text" class="form-control" name="email" ng-model="loginForm.user.email" id="email" />
+                    </div>
+                    <div class="jp_input_wrapper margin-bottom-10">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" ng-model="loginForm.user.password" id="password" />
+                    </div>
+                    <div class="jp_input_wrapper text-right">
+                        <a href="#jp_forgot_password" jp_popup_link class="forgot_password jp_popup_link">Forgot Password?</a>
+                    </div>
+                    <div class="jp_input_wrapper text-center">
+                        <button type="submit"  class="jp_btn">Login</button>
+                    </div>
+                    </form>
+                    <div class="jp_input_wrapper text-center">
+                        <div class="jp_auth_bottomText">
+                            <p>Don`t  Have An Account ? <a href="register">Register</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Forgot Password popup start -->
+<div id="jp_forgot_password" class="jp_popup_wrapper">
+    <div jp_popup_close class="jp_popup_close"></div>
+    <div class="jp_popup_inner">
+        <div class="jp_popup_header">
+            <h3>Forgot Password</h3>
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66px" height="67px"><path fill-rule="evenodd" fill="#6a64e7" d="M32.815,66.188 C14.747,66.188 0.046,51.490 0.046,33.423 C0.046,15.356 14.747,0.659 32.815,0.659 C50.885,0.659 65.585,15.357 65.585,33.424 C65.585,51.492 50.885,66.188 32.815,66.188 ZM32.815,3.182 C16.137,3.182 2.569,16.748 2.569,33.424 C2.569,50.099 16.137,63.666 32.815,63.666 C49.492,63.666 63.061,50.099 63.061,33.424 C63.061,16.748 49.494,3.182 32.815,3.182 ZM40.424,19.763 C38.332,19.763 36.637,21.457 36.637,23.550 C36.637,25.640 38.333,27.337 40.424,27.337 C42.516,27.337 44.212,25.640 44.212,23.550 C44.212,21.457 42.516,19.763 40.424,19.763 ZM24.652,19.763 C22.560,19.763 20.865,21.457 20.865,23.550 C20.865,25.640 22.561,27.337 24.652,27.337 C26.744,27.337 28.440,25.640 28.440,23.550 C28.440,21.457 26.746,19.763 24.652,19.763 ZM49.091,42.548 C49.867,41.848 49.926,40.651 49.226,39.875 C48.523,39.102 47.328,39.042 46.552,39.740 C42.796,43.135 37.937,45.003 32.872,45.003 C27.789,45.003 22.918,43.126 19.158,39.713 C18.387,39.011 17.187,39.067 16.485,39.842 C15.781,40.616 15.841,41.814 16.615,42.515 C21.073,46.561 26.847,48.789 32.873,48.789 C38.876,48.787 44.638,46.573 49.091,42.548 Z"/></svg>
+            </span>
+        </div>
+        <div class="jp_popup_body">
+            <div class="jp_auth_box">
+         <div class="jp_auth_form">
+          <form name="forgotForm" ng-submit='forgotPassword(forgotForm)' ng-validate="validationOptions">
+                 <div class="jp_radio_list" ng-init="forgotForm.user.forgot_option='seekerforgot'">
+                        <div class="jp_radio">
+                            <input type="radio" name="login_option" ng-model="forgotForm.user.forgot_option" id="forgotseeker"  value='seekerforgot' />
+                            <label for="forgotseeker">Seeker</label>
+                        </div>
+                        <div class="jp_radio">
+                            <input type="radio" ng-model="forgotForm.user.forgot_option" name="login_option" id="forgotrecruiter" value='recruiterforgot' />
+                            <label for="forgotrecruiter">Recruiter</label>
+                        </div>
+                    </div>
+            <div class="jp_input_wrapper">
+
+                <label>Enter email address</label>
+                <input type="text" name="forgotemail" ng-model="forgotForm.user.forgotemail" class="form-control" />
+            </div>
+            <div class="jp_input_wrapper text-center">
+                <button type="submit"  class="jp_btn">Done</button>
+            </div>
+            </form>
+             </div>
+             </div>
+        </div>
+    </div>
+</div>

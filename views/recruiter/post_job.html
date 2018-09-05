@@ -1,0 +1,250 @@
+<div ng-controller='postjobCtrl'>
+<div class="jp_sidebar_close"></div>
+<div class="jp_alert_wrapper jp_error">
+    <div class="jp_alert_inner">
+        <div class="message">
+
+        </div>
+    </div>
+</div>
+<!-- header start -->
+<div class="jp_header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jp_header_wrapper">
+                    <div class="jp_logo">
+                        <a href="./recruiter/home/{{appUser.jwt_token}}"><img src="assets/images/logo_with_text.png" alt=""></a>
+                    </div>
+                    <div class="jp_header_right">
+                        <div class="jp_nav">
+                            <ul>
+                               <li><a href="./recruiter/home/{{appUser.jwt_token}}">My Jobs</a></li>
+                                <li><a href="./recruiter/post-new-job/{{appUser.jwt_token}}">Post Job</a></li>
+                            </ul>
+                        </div>
+                        <div class="jp_profile_dd jp_dropdown_wrapper dropdown_right">
+                            <div class="icon has_image">
+                                <img ng-if='appUser.recruiter_profile_update == 0' src="assets/images/dummy_user.png" alt="" />
+                                 <img ng-if='appUser.recruiter_profile_update == 1' src="{{appUser.recruiter_profile.org_logo}}" alt="" />
+                                
+                            </div>
+                            <label>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewbox="0 0 48.4 48.4" style="enable-background:new 0 0 48.4 48.4;" xml:space="preserve"><g><path d="M48.4,24.2c0-1.8-1.297-3.719-2.896-4.285s-3.149-1.952-3.6-3.045c-0.451-1.093-0.334-3.173,0.396-4.705 c0.729-1.532,0.287-3.807-0.986-5.08c-1.272-1.273-3.547-1.714-5.08-0.985c-1.532,0.729-3.609,0.848-4.699,0.397 s-2.477-2.003-3.045-3.602C27.921,1.296,26,0,24.2,0c-1.8,0-3.721,1.296-4.29,2.895c-0.569,1.599-1.955,3.151-3.045,3.602 c-1.09,0.451-3.168,0.332-4.7-0.397c-1.532-0.729-3.807-0.288-5.08,0.985c-1.273,1.273-1.714,3.547-0.985,5.08 c0.729,1.533,0.845,3.611,0.392,4.703c-0.453,1.092-1.998,2.481-3.597,3.047S0,22.4,0,24.2s1.296,3.721,2.895,4.29 c1.599,0.568,3.146,1.957,3.599,3.047c0.453,1.089,0.335,3.166-0.394,4.698s-0.288,3.807,0.985,5.08 c1.273,1.272,3.547,1.714,5.08,0.985c1.533-0.729,3.61-0.847,4.7-0.395c1.091,0.452,2.476,2.008,3.045,3.604 c0.569,1.596,2.49,2.891,4.29,2.891c1.8,0,3.721-1.295,4.29-2.891c0.568-1.596,1.953-3.15,3.043-3.604 c1.09-0.453,3.17-0.334,4.701,0.396c1.533,0.729,3.808,0.287,5.08-0.985c1.273-1.273,1.715-3.548,0.986-5.08 c-0.729-1.533-0.849-3.61-0.398-4.7c0.451-1.09,2.004-2.477,3.603-3.045C47.104,27.921,48.4,26,48.4,24.2z M24.2,33.08 c-4.91,0-8.88-3.97-8.88-8.87c0-4.91,3.97-8.88,8.88-8.88c4.899,0,8.87,3.97,8.87,8.88C33.07,29.11,29.1,33.08,24.2,33.08z" fill="#393939"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                            </label>
+                            <div class="jp_dropdown">
+                                <div class="jp_dropdown_inner">
+                                    <ul>
+                                        <li><a href="./recruiter/profile-setting/{{appUser.jwt_token}}">Profile Setting</a></li>
+                                        <li><a href="./logout/{{userRole}}/{{appUser.jwt_token}}" >Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div navtoggle class="jp_nav_toggle">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="jp_page_title">
+                    <h3>Post Job</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+<!-- header end -->
+
+<div class="jp_main_wrapper">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12">
+               <div class="jp_postJob_wrapper">
+                    <div class="jp_job_box">
+                        <div class="row">
+                          <form name="jobForm" ng-submit='postJob(jobForm)' ng-validate="validationOptions">
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Job Type</label>
+                                    <select name="job_type" class="form-control"  
+                                           ng-model="job_type" ng-options="opt.id as opt.job_type for opt in general_info.job_types">
+                                        <option  value="">please select job type</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>designation</label>
+                                     <select name="job_by_role" class="form-control"  
+                                           ng-model="job_by_roles" ng-options="opt.id as opt.job_by_role for opt in general_info.job_by_roles">
+                                        <option  value="">please select designation</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Qualification</label>
+                                         <select name="qualification" class="form-control"  
+                                           ng-model="qualification" ng-options="opt.id as opt.qualification for opt in general_info.qualifications">
+                                        <option  value="">please select qualification</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Job Location</label>
+                                       <select name="location_name" class="form-control"  
+                                           ng-model="location_names" ng-options="opt.id as opt.location_name for opt in general_info.locations">
+                                        <option  value="">please select job location</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Year Of Passing</label>
+                                    <input type="text" name="year_of_passing" ng-model='year_of_passing' class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Percentage/CGPA</label>
+                                    <input type="text" name="percentage_or_cgpa" ng-model='percentage_or_cgpa' class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Specialization </label>
+                                   
+                                    <select name="specialization" class="form-control"  
+                                           ng-model="specialization" ng-options="opt.id as opt.specialization for opt in general_info.specialization">
+                                        <option  value="">please select specialization</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Area Of Sector </label>
+                                  
+                                      <select name="area_of_sector" class="form-control"  
+                                           ng-model='area_of_sector' ng-options="opt.id as opt.area_of_sector for opt in general_info.area_of_sectors">
+                                        <option  value="">please select area of sector </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>experience </label>
+                                    <select name="experience
+                                    " ng-model="experience" class="form-control">
+                                    <option value="">please select</option>
+                                        <option  value="Fresher">Fresher</option>
+                                        <option  value="06 Months">06 Months</option>
+                                        <option  value="1 Year">1 Year</option>
+                                        <option  value="1.5 Year">1.5 Year</option>
+                                        <option  value="2 Year">2 Year</option>
+                                        <option  value="2.5 Year">2.5 Year</option>
+                                        <option  value="3 Year">3 Year </option>
+                                        <option  value="3+ Year">3 Year +</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Number of Vacancies</label>
+                                    <input type="text" name="vacancies" ng-model='vacancies' class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Last Date of Application</label>
+                                    <input type="text" name="last_date" class="form-control" ng-model="datepicker" datepicker />
+                                </div>
+                            </div>
+                           <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Hiring Process</label>
+                                    <div  class="jp_checkbox">
+                                    <input type="checkbox" add-remove-process-post value="Face to Face" id="ftof" name="process[]" class="process" />
+                                    <label for="ftof">Face to Face</label>
+                                </div>
+                            
+                                <div  class="jp_checkbox">
+                                    <input type="checkbox" add-remove-process-post value="Written Test"
+     id="writtentest"  name="process[]" class="process" />
+                                    <label for="writtentest">Written Test</label>
+                                </div>
+                                 <div  class="jp_checkbox">
+                                    <input type="checkbox" add-remove-process-post  value="Telephonic" id="telephonic" name="process[]"  class="process" />
+                                    <label for="telephonic">Telephonic</label>
+                                </div>
+                                <div  class="jp_checkbox">
+                                    <input type="checkbox" add-remove-process-post value="Group Discussion" id="gd" name="process[]" class="process" />
+                                    <label for="gd">Group Discussion</label>
+                                </div>
+                                 <div  class="jp_checkbox">
+                                    <input type="checkbox"  add-remove-process-post value="Walk In" id="walkin" name="process[]" class="process" />
+                                    <label for="walkin">Walk In</label>
+                                </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="jp_input_wrapper">
+                                    <label>Salary Range</label>
+                                    <select name="per"   ng-model="per" class="form-control">
+                                        <option  value="">please select</option>
+                                        <option ng-selected="{{jobdetail.per == 'Year'}}" value="Year">Per Year</option>
+                                        <option ng-selected="{{jobdetail.per == 'Month'}}"  value="Month">Per Month</option>
+                                        <option ng-selected="{{jobdetail.per == 'Day'}}" value="Day">Per Day</option>
+                                        <option ng-selected="{{jobdetail.per == 'Hour'}}" value="Hour">Per Hour</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="jp_input_wrapper">
+                                    <label>Minimum</label>
+                                    <input type="text" name="min_sal" ng-model='min_sal' class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="jp_input_wrapper">
+                                    <label>Maximum</label>
+                                    <input type="text" name="max_sal" ng-model='max_sal' class="form-control" />
+                                </div>
+                            </div>
+                              <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Skills Required</label>
+                                    <input type="text" name="skills_required" ng-model='skills_required' class="form-control" />
+                                </div>
+                            </div>
+                             <div class="col-md-6">
+                                <div class="jp_input_wrapper">
+                                    <label>Job Discription</label>
+                                   <textarea
+  ng-model="job_discription" name='job_discription' class='form-control'>
+  
+
+</textarea>
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="jp_btn">Post Job</button>
+                            </div>
+                            </form>
+                           
+                        </div>
+                    </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+</div>

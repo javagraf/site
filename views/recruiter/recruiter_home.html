@@ -1,0 +1,127 @@
+<div ng-contoller='recruiterhomeCtrl'>
+    <div class="jp_sidebar_close"></div>
+
+    <!-- header start -->
+    <div class="jp_header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jp_header_wrapper">
+                        <div class="jp_logo">
+                            <a href="./recruiter/home/{{appUser.jwt_token}}"><img src="assets/images/logo_with_text.png" alt=""></a>
+                        </div>
+                        <div class="jp_header_right">
+                            <div class="jp_nav">
+                                <ul>
+                                    <li><a href="./recruiter/home/{{appUser.jwt_token}}">My Jobs</a></li>
+                                    <li><a href="./recruiter/post-new-job/{{appUser.jwt_token}}">Post Job</a></li>
+                                </ul>
+                            </div>
+                            <div class="jp_profile_dd jp_dropdown_wrapper dropdown_right">
+                                <div class="icon has_image">
+                                    <img ng-if='appUser.recruiter_profile_update == 0' src="assets/images/dummy_user.png" alt="" />
+                                    <img ng-if='appUser.recruiter_profile_update == 1' src="{{appUser.recruiter_profile.org_logo}}" alt="" />
+
+                                </div>
+                                <label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewbox="0 0 48.4 48.4" style="enable-background:new 0 0 48.4 48.4;" xml:space="preserve"><g><path d="M48.4,24.2c0-1.8-1.297-3.719-2.896-4.285s-3.149-1.952-3.6-3.045c-0.451-1.093-0.334-3.173,0.396-4.705 c0.729-1.532,0.287-3.807-0.986-5.08c-1.272-1.273-3.547-1.714-5.08-0.985c-1.532,0.729-3.609,0.848-4.699,0.397 s-2.477-2.003-3.045-3.602C27.921,1.296,26,0,24.2,0c-1.8,0-3.721,1.296-4.29,2.895c-0.569,1.599-1.955,3.151-3.045,3.602 c-1.09,0.451-3.168,0.332-4.7-0.397c-1.532-0.729-3.807-0.288-5.08,0.985c-1.273,1.273-1.714,3.547-0.985,5.08 c0.729,1.533,0.845,3.611,0.392,4.703c-0.453,1.092-1.998,2.481-3.597,3.047S0,22.4,0,24.2s1.296,3.721,2.895,4.29 c1.599,0.568,3.146,1.957,3.599,3.047c0.453,1.089,0.335,3.166-0.394,4.698s-0.288,3.807,0.985,5.08 c1.273,1.272,3.547,1.714,5.08,0.985c1.533-0.729,3.61-0.847,4.7-0.395c1.091,0.452,2.476,2.008,3.045,3.604 c0.569,1.596,2.49,2.891,4.29,2.891c1.8,0,3.721-1.295,4.29-2.891c0.568-1.596,1.953-3.15,3.043-3.604 c1.09-0.453,3.17-0.334,4.701,0.396c1.533,0.729,3.808,0.287,5.08-0.985c1.273-1.273,1.715-3.548,0.986-5.08 c-0.729-1.533-0.849-3.61-0.398-4.7c0.451-1.09,2.004-2.477,3.603-3.045C47.104,27.921,48.4,26,48.4,24.2z M24.2,33.08 c-4.91,0-8.88-3.97-8.88-8.87c0-4.91,3.97-8.88,8.88-8.88c4.899,0,8.87,3.97,8.87,8.88C33.07,29.11,29.1,33.08,24.2,33.08z" fill="#393939"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                </label>
+                                <div class="jp_dropdown">
+                                    <div class="jp_dropdown_inner">
+                                        <ul>
+                                            <li><a href="./recruiter/profile-setting/{{appUser.jwt_token}}">Profile Setting</a></li>
+                                            <li><a href="./logout/{{userRole}}/{{appUser.jwt_token}}" >Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div navtoggle class="jp_nav_toggle">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="jp_page_title">
+                        <h3>My Jobs</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header end -->
+
+    <div class="jp_main_wrapper">
+
+
+        <div class="jp_doctor_list_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- job listing start -->
+                        <div ng-if='loadingIsDone'>
+                        <div class="jp_job_box" ng-repeat="(key_job, value_job) in myjobsArray | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
+                            <div class="job_detail">
+                                <h3>{{value_job.specialization}}</h3>
+                                <span>
+                             <a ng-if='value_job.no_applied_by > 0' ng-href="./recruiter/applied-user/{{value_job.specialization}}/{{value_job.id}}/{{appUser.jwt_token}}">{{value_job.no_applied_by}} users</a></span>
+                                <a ng-if='value_job.no_applied_by == 0' href="Javascript:void(0)">{{value_job.no_applied_by}} users</a></span>
+                                <ul>
+                                    <li> <p >
+                                        {{value_job.job_discription}}
+                                    </p></li>
+                                    <!--  <li><span><img src="assets/images/experience.svg" alt=""></span> 2-3 Year</li>
+                                     <li><span><img src="assets/images/location.svg" alt=""></span> Paris</li> -->
+                                </ul>
+
+                                <!--  <h4>
+                                     <span class="icon"></span>
+                                     <span class="skills"><a href="">Photoshop</a>, <a href="">Illustrator</a>, <a href="">InDesign</a>, <a href="">Corel Draw</a></span>
+                                 </h4> -->
+                            </div>
+                            <div class="jp_view_btn" style="padding-bottom: 20px;">
+                                <a ng-href="./recruiter/edit-job/{{value_job.specialization}}/{{value_job.id}}/{{appUser.jwt_token}}" class="jp_btn jp_btn_block">Edit</a>
+
+                            </div>
+
+                            <div class="jp_view_btn">
+                                <button confirmed-click="deleteJob(value_job.id,appUser.id)"
+                                        ng-confirm-click="Are you sure you want to delete this job" class="jp_btn jp_btn_block">Delete</button>
+
+                            </div>
+                        </div>
+
+                        <!-- job listing end -->
+
+                        <!-- pagination start -->
+                        <div class="jp_pagination">
+                            <ul class="pagination pagination-lg">
+                                <!-- <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li> -->
+                                <li ng-class="prevPageDisabled()">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                                    <a href="#">{{n+1}}</a>
+                                </li>
+                                <li ng-class="nextPageDisabled()">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- pagination end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

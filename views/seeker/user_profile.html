@@ -1,0 +1,300 @@
+<div ng-controller='userprofileCtrl'>
+<div categoryclose class="jp_sidebar_close"></div>
+<div class="jp_alert_wrapper jp_error"">
+    <div class="jp_alert_inner">
+        <div class="message">
+
+       </div>
+    </div>
+</div>
+    <!-- header start -->
+    <div class="jp_header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jp_header_wrapper">
+                        <div class="jp_logo">
+                         <a href="./user/home/{{appUser.jwt_token}}"><img src="assets/images/logo_with_text.png" alt=""></a>
+                        </div>
+                        <div class="jp_header_right">
+                            <div class="jp_nav">
+                                <ul>
+                                    <li><a href="./user/home/{{appUser.jwt_token}}" class="active">Jobs</a></li>
+                                </ul>
+                            </div>
+                            <div class="jp_profile_dd jp_dropdown_wrapper dropdown_right">
+                                <div class="icon has_image">
+                                   <!--  <img src="{{appUser.seeker_profile.avtar}}" alt="" /> -->
+                                    <img ng-if='appUser.profile_update == 0' class="render-image" src="assets/images/dummy_user.png" alt="" />
+                                    <img ng-if='appUser.profile_update == 1' src="{{appUser.seeker_profile.avtar}}" alt="" />
+                                </div>
+                                <label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewbox="0 0 48.4 48.4" style="enable-background:new 0 0 48.4 48.4;" xml:space="preserve"><g><path d="M48.4,24.2c0-1.8-1.297-3.719-2.896-4.285s-3.149-1.952-3.6-3.045c-0.451-1.093-0.334-3.173,0.396-4.705 c0.729-1.532,0.287-3.807-0.986-5.08c-1.272-1.273-3.547-1.714-5.08-0.985c-1.532,0.729-3.609,0.848-4.699,0.397 s-2.477-2.003-3.045-3.602C27.921,1.296,26,0,24.2,0c-1.8,0-3.721,1.296-4.29,2.895c-0.569,1.599-1.955,3.151-3.045,3.602 c-1.09,0.451-3.168,0.332-4.7-0.397c-1.532-0.729-3.807-0.288-5.08,0.985c-1.273,1.273-1.714,3.547-0.985,5.08 c0.729,1.533,0.845,3.611,0.392,4.703c-0.453,1.092-1.998,2.481-3.597,3.047S0,22.4,0,24.2s1.296,3.721,2.895,4.29 c1.599,0.568,3.146,1.957,3.599,3.047c0.453,1.089,0.335,3.166-0.394,4.698s-0.288,3.807,0.985,5.08 c1.273,1.272,3.547,1.714,5.08,0.985c1.533-0.729,3.61-0.847,4.7-0.395c1.091,0.452,2.476,2.008,3.045,3.604 c0.569,1.596,2.49,2.891,4.29,2.891c1.8,0,3.721-1.295,4.29-2.891c0.568-1.596,1.953-3.15,3.043-3.604 c1.09-0.453,3.17-0.334,4.701,0.396c1.533,0.729,3.808,0.287,5.08-0.985c1.273-1.273,1.715-3.548,0.986-5.08 c-0.729-1.533-0.849-3.61-0.398-4.7c0.451-1.09,2.004-2.477,3.603-3.045C47.104,27.921,48.4,26,48.4,24.2z M24.2,33.08 c-4.91,0-8.88-3.97-8.88-8.87c0-4.91,3.97-8.88,8.88-8.88c4.899,0,8.87,3.97,8.87,8.88C33.07,29.11,29.1,33.08,24.2,33.08z" fill="#393939"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                </label>
+                                <div class="jp_dropdown">
+                                    <div class="jp_dropdown_inner">
+                                        <ul>
+                                            <li><a href="./user/profile-setting/{{appUser.jwt_token}}">Profile Setting</a></li>
+                                            <li><a href="./logout/{{userRole}}/{{appUser.jwt_token}}" >Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div navtoggle class="jp_nav_toggle">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="jp_page_title">
+                        <h3>User Profile</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- header end -->
+
+    <div class="jp_main_wrapper">
+        <div class="jp_profile_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="jp_job_box">
+                        <div class="col-md-4">
+                            <div class="jp_profile_image">
+                                <div class="image">
+                                     <img ng-if='appUser.profile_update == 0' imageonload='avtarseeker' class="imageRenderer" src="assets/images/dummy_user.png" alt="" />
+                                    <img ng-if='appUser.profile_update == 1' imageonload='avtarseeker' class="imageRenderer" src="{{appUser.seeker_profile.avtar}}" alt="" />
+                                    <div class="overlay">
+                                        <input type="file"  file-model="avtarseeker"/>
+                                        <svg x="0px" y="0px" viewbox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;" xml:space="preserve" width="512px" height="512px"><g><g><path d="M457.7,230.15c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5c-33.4,0-60.5-27.2-60.5-60.5v-124.8 c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v124.8c0,48.3,39.3,87.5,87.5,87.5h296.2c48.3,0,87.5-39.3,87.5-87.5v-122.8 C471.2,236.25,465.2,230.15,457.7,230.15z" fill="#FFFFFF"/><path d="M159.3,126.15l62.8-62.8v273.9c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5V63.35l62.8,62.8c2.6,2.6,6.1,4,9.5,4 c3.5,0,6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1l-85.8-85.8c-2.5-2.5-6-4-9.5-4c-3.6,0-7,1.4-9.5,4l-85.8,85.8 c-5.3,5.3-5.3,13.8,0,19.1C145.5,131.35,154.1,131.35,159.3,126.15z" fill="#FFFFFF"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                    </div>
+                                </div>
+                                <p>Change profile image</p>
+                                <h3>{{appUser.full_name}}</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="jp_title_medium" style="font-weight: 500">Personal details</h3>
+                            <div class="row">
+                                 <form name="profileForm" enctype="multipart/form-data" data-ng-submit='updateProfile(profileForm)' ng-validate="validationOptions">
+                                <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Gender</label>
+                                        <div class="jp_radio_list">
+                                            <div class="jp_radio">
+                                                <input type="radio" name="gender" id="male"  ng-checked="'male' == (appUser.seeker_profile.gender | lowercase)" ng-model="appUser.seeker_profile.gender" ng-value="male" ng-click='genderchange("male")'>
+                                                <label for="male">Male</label>
+                                            </div>
+                                            <div class="jp_radio">
+                                                <input type="radio" name="gender" id="female" ng-checked="'female' == (appUser.seeker_profile.gender | lowercase)" ng-model="appUser.seeker_profile.gender" ng-value="female" ng-click='genderchange("female")'>
+                                                <label for="female">Female</label>
+                                            </div>
+                                        </div>
+                                    </div>      
+                                </div>
+                                <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Current Address</label>
+                                        <textarea rows="3" class="form-control" name="current_address" ng-model="appUser.seeker_profile.current_address"></textarea>
+                                    </div>        
+                                </div>                            
+                       <!--          <div class="clearfix"></div><br><br> -->
+
+                                <div class="col-md-12 clearfix">
+                                    <h3 class="jp_title_medium" style="font-weight: 500">Search preferences</h3>
+                                </div>
+                                <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Preferred Location</label>
+                                        <select name="preferred_location" class="form-control" ng-model="appUser.seeker_profile.preferred_location" ng-options="opt.id as opt.location_name for opt in general_info.locations">
+                                            <option value="">Please select</option>
+                                        </select>
+                                    </div>        
+                                </div>
+                                <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Job Type</label>
+                                        <div class="jp_radio_list">
+                                            <div class="jp_radio" ng-repeat="(key, valjob_type) in general_info.job_types">
+                                                <input ng-value="valjob_type.id"
+                                                ng-checked="(appUser.seeker_profile.job_type == valjob_type.id)"
+                                                 type="radio" name="job_type" id="{{valjob_type.job_type |  replaceSpace}}-{{key}}" ng-model="appUser.seeker_profile.job_type">
+                                                <label for="{{valjob_type.job_type | replaceSpace}}-{{key}}">{{ valjob_type.job_type }}</label>
+                                            </div>
+                                        </div>
+                                    </div>        
+                                </div>
+                                <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Qualification</label>
+                                        <select name="seeker_qualification" class="form-control"  ng-model="appUser.seeker_profile.seeker_qualification" ng-options="opt.id as opt.qualification for opt in general_info.qualifications">
+                                            <option value="">Please select</option>
+                                         
+                                        </select>
+                                    </div>        
+                                </div>
+                                <div class="col-md-12 clearfix">
+                                <div class="col-md-6 ">
+                                    <div class="jp_input_wrapper">
+                                        <label>Year Of Passing</label>
+                                        <input type="text" class="form-control" name="year_of_passing" ng-model="appUser.seeker_profile.year_of_passing">
+                                    </div>        
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="jp_input_wrapper">
+                                        <label>Percentage/CGPA</label>
+                                        <input type="text" class="form-control" name="percentage_or_cgpa" ng-model="appUser.seeker_profile.percentage_or_cgpa">
+                                    </div>        
+                                </div>
+                                </div>
+                                <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Area Of Sector</label>
+                                        <select name="area_of_sector" class="form-control" ng-model="appUser.seeker_profile.area_of_sector" ng-options="opt.id as opt.area_of_sector for opt in general_info.area_of_sectors">
+                                            <option value="">Please select</option>
+                                          
+                                        </select>
+                                    </div>        
+                                </div>
+                                <!-- profile update 1 -->
+                                <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Work Experience</label>
+                                        <div class="jp_radio_list">
+                                            <div class="jp_radio">
+                                                <input ng-value="fresher"
+                                                ng-checked="'fresher' == (appUser.seeker_profile.work_experience | lowercase)" type="radio" name="work_experience" id="fresher" ng-model="appUser.seeker_profile.work_experience" ng-click='test("fresher")' />
+                                                <label for="fresher">Fresher</label>
+                                            </div>
+                                            <div class="jp_radio">
+                                                <input ng-value="experienced"
+                                                ng-checked="'experienced' == (appUser.seeker_profile.work_experience | lowercase )"  type="radio" name="work_experience" ng-model="appUser.seeker_profile.work_experience" id="experienced" ng-click='test("experienced")' />
+                                                <label for="experienced">Experienced</label>
+                                            </div>
+                                        </div>
+                                    </div>        
+                                </div>
+                                
+
+                                <div class="experienced-tab col-md-12 clearfix" ng-show="appUser.seeker_profile.work_experience == 'experienced'"
+                                >
+                                       <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Total Experience Year</label>
+                                        <select name="experience_in_year" class="form-control" ng-model="appUser.seeker_profile.experience_in_year">
+                                               <option value="">please select</option>
+                                               <option ng-selected="{{appUser.seeker_profile.experience_in_year == '0 year'}}" value="0 year">0 year</option>
+                                                 <option ng-selected="{{appUser.seeker_profile.experience_in_year == '1 year'}}" value="1 year">1 year</option>
+                                                  <option ng-selected="{{appUser.seeker_profile.experience_in_year == '2 year'}}" value="2 year">2 year</option>
+                                                  <option ng-selected="{{appUser.seeker_profile.experience_in_year == '3 year'}}" value="3 year">3 year</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_year == '4 year'}}" value="4 year">4 year</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_year == '5 year'}}" value="5 year">5 year</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_year == '6 year'}}" value="6 year">6 year</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_year == '7 year'}}" value="7 year">7 year</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_year == '8 year'}}" value="8 year">8 year</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_year == '9 year'}}" value="9 year">9 year</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_year == '10 year'}}" value="10 year">10 year</option>
+                                                     <option ng-selected="{{appUser.seeker_profile.experience_in_year == '11 year'}}" value="11 year">11 year</option>
+
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_year == '12+ year'}}" value="12+ year">12+ year</option>
+                                          
+                                        </select>
+                                    </div>        
+                                </div> 
+
+
+
+                                 <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Total Experience Month</label>
+                                        <select name="experience_in_months" class="form-control" ng-model="appUser.seeker_profile.experience_in_months">
+                                               <option value="">please select</option>
+                                               <option ng-selected="{{appUser.seeker_profile.experience_in_months == '0 month'}}" value="0 month">0 month</option>
+                                                 <option ng-selected="{{appUser.seeker_profile.experience_in_months == '1 month'}}" value="1 month">1 month</option>
+                                                  <option ng-selected="{{appUser.seeker_profile.experience_in_months == '2 month'}}" value="2 month">2 month</option>
+                                                  <option ng-selected="{{appUser.seeker_profile.experience_in_months == '3 month'}}" value="3 month">3 month</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_months == '4 month'}}" value="4 month">4 month</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_months == '5 month'}}" value="5 month">5 month</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_months == '6 month'}}" value="6 month">6 month</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_months == '7 month'}}" value="7 month">7 month</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_months == '8 month'}}" value="8 month">8 month</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_months == '9 month'}}" value="9 month">9 month</option>
+                                                    <option ng-selected="{{appUser.seeker_profile.experience_in_months == '10 month'}}" value="10 month">10 month</option>
+                                                     <option ng-selected="{{appUser.seeker_profile.experience_in_months == '11 month'}}" value="11 month">11 month</option>
+
+                                                   
+                                          
+                                        </select>
+                                    </div>        
+                                </div> 
+                                 <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Specialization</label>
+                                        <select name="specialization" class="form-control" ng-model="appUser.seeker_profile.specialization" ng-options="opt.id as opt.specialization for opt in general_info.specialization">
+                                         <option value="">Please select</option>
+                                          
+                                        </select>
+                                    </div>        
+                                </div>
+                                 <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Role Type</label>
+                                        <select name="role_type" class="form-control" ng-model="appUser.seeker_profile.role_type" ng-options="opt.id as opt.job_by_role for opt in general_info.job_by_roles">
+                                         <option value="">Please select</option>
+                                          
+                                        </select>
+                                    </div>        
+                                </div>
+                                    <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Certification</label>
+                                        <input type="text" class="form-control" name="certification" ng-model="appUser.seeker_profile.certification">
+                                    </div>        
+                                </div>
+                                </div>
+                                <div class="col-md-12 clearfix">
+                                    <div class="jp_input_wrapper">
+                                        <label>Upload Resume</label>
+                                        <input type="file" name="resume"  fileread="resume" class="form-control">
+                                    </div>        
+                                </div>
+                             <div class="col-md-12 clearfix jp_input_wrapper clearfix">
+                                    <button type="submit" class="jp_btn" >Save Changes</button>
+                                </div>
+                                   </form>
+                            </div>
+                                
+                         
+                            <div class="clearfix"></div><br><br>
+                            <h3 class="jp_title_medium">Change Password</h3>
+                           <form name="changepasswordForm" ng-submit='updatePassword(changepasswordForm)' ng-validate="validationOptions">
+                            <div class="row">
+                            
+                                <div class="col-md-6">
+                                    <div class="jp_input_wrapper">
+                                        <label>Old Password</label>
+                                        <input type="password" name="old_password" ng-model="old_password" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="jp_input_wrapper">
+                                        <label>New password</label>
+                                        <input type="password" name="new_password" ng-model="new_password" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jp_input_wrapper">
+                             <button type="submit" class="jp_btn" >Update Password</button>
+                            </div>
+                            </form>
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
