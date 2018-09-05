@@ -19,6 +19,7 @@ class CreateResumeModelsTable extends Migration
     {
         Schema::create('resume', function (Blueprint $table) {
             $table->increments('id');
+            $table->increments('id');//todo : delete this
             $table->integer('seeker_id')->unsigned();
             $table->foreign('seeker_id')->references('id')->on('seeker')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('resume_type')->unsigned();
